@@ -192,9 +192,7 @@ class road:
                 if i['스킬이름'] == "TheWorld":
                     if not i['턴'] >= i['최대턴']:
                         for k in range(0,len(self.enemy_status_list_dic)):
-                            print(self.sub_enemy_status_list_dic)
                             self.enemy_status_list_dic[k]['공격력'] = 0
-                            print(self.sub_enemy_status_list_dic)
                             self.skill[x]['턴'] += 1
                     else:
                         for f,g in zip(self.enemy_status_list_dic,range(0,len(self.enemy_status_list_dic))):
@@ -213,7 +211,6 @@ new_road.load_status()
 new_road.load(new_road.player_status_dic['위치'])
 new_road.draw_player(x=0, y=0)
 while True:
-    print(new_road.skill)
     for i,x in zip(new_road.skill,range(0,len(new_road.skill))):
         if i['쿨여부'] and not i['활성여부']:
             if i['쿨턴'] <= i['쿨타임']:
@@ -302,6 +299,7 @@ while True:
                                 print(f"{new_road.player_status_dic['체력']} -> {new_road.player_status_dic['체력'] + 20}")
                                 new_road.player_status_dic['체력'] += 20
                                 new_road.item.remove("붕대")
+                                sleep(1)
                 if local_input == "exit":
                     break
         elif game_input == "skill":
@@ -324,6 +322,7 @@ while True:
                                     print("The World!! (스킬시전)")
                                     new_road.skill[x]['쿨여부'] = True
                                     new_road.skill[x]['활성여부'] = True
+                                    sleep(1)
                 if local_input == "exit":
                     break
         elif game_input == "init_game":
