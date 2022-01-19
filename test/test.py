@@ -1,4 +1,6 @@
 from typing import List
+import winsound
+winsound.Beep(100,250)
 
 with open("gamedata\\map\\huntingground.txt","r",encoding="UTF8") as f:
         x = f.read()
@@ -70,5 +72,17 @@ for i in enemy_status_list:
                 "돈" : i[4],
                 "방어력" : i[5]
         }
+item_box_s = 0
+item_box_e = 0
+item_box_list = []
+for i,x in zip(content,range(0,len(content))):
+        if i == "ITEM":
+                item_box_s = x
+        if i == "ITEM_end":
+                item_box_e = x
+for i in content[item_box_s+1:item_box_e]:
+        i = i.split(" ")
+        item_box_list.append([str(i[0]),[int(i[1]),int(i[2])],eval(i[3])])
+print(item_box_list)
 print(enemy_status_list_dic)
 print(enemy_status_list)
