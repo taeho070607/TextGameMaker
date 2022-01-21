@@ -42,7 +42,6 @@ door
 .
 .
 door_end
-ENEMY_무장민간인_status_end
 ITEM
 (아이템 박스 이름) (x좌표) y(좌표) [(안에있는 아이템 이름),.......]
 ITEM_end
