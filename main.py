@@ -56,7 +56,7 @@ class road:
             door_list = []
             for i in self.content[door_s + 1:door_e]:
                 i = i.split(" ")
-                door_list.append([str(i[0]), [int(i[1]), int(i[2])],str(i[3])])
+                door_list.append([str(i[0]), [int(i[1]), int(i[2])],str(i[3]),eval(i[4])])
             self.door_list = door_list
             npc_m_list = []
             for i in npc_list:
@@ -341,6 +341,8 @@ while True:
     new_road.skill_turn()
     for i in new_road.enemy_list:
         new_road.draw_entty(x=i[1][0], y=i[1][1], A="□")
+    for i in new_road.door_list:
+        new_road.draw_entty(x=i[1][1], y=i[1][0], A="■")
     for i in range(0,len(new_road.enemy_list)):
         change_random_x = randrange(-1, 2)
         change_random_y = randrange(-1, 2)
@@ -374,14 +376,27 @@ while True:
                 new_road.meeter_y = i[1][0]
     for i in new_road.door_list:
         if i[1] == new_road.player:
-            for x in range(0,len(new_road.skill)):
-                new_road.skill[x]['활성여부'] = False
-                new_road.skill[x]['쿨여부'] = False
-                new_road.skill[x]['턴'] = 0
-                new_road.skill[x]['쿨턴'] = 0
-            new_road.load(i[2])
-            new_road.player_status_dic['위치'] = i[2]
-            new_road.draw_player(x=0, y=0)
+            if i[3] == None:
+                for x in range(0,len(new_road.skill)):
+                    new_road.skill[x]['활성여부'] = False
+                    new_road.skill[x]['쿨여부'] = False
+                    new_road.skill[x]['턴'] = 0
+                    new_road.skill[x]['쿨턴'] = 0
+                new_road.load(i[2])
+                new_road.player_status_dic['위치'] = i[2]
+                new_road.draw_player(x=0, y=0)
+            elif i[3] != None:
+                print(i[3])
+                k = input("비밀번호 :")
+                if k == i[3]:
+                    for x in range(0,len(new_road.skill)):
+                        new_road.skill[x]['활성여부'] = False
+                        new_road.skill[x]['쿨여부'] = False
+                        new_road.skill[x]['턴'] = 0
+                        new_road.skill[x]['쿨턴'] = 0
+                    new_road.load(i[2])
+                    new_road.player_status_dic['위치'] = i[2]
+                    new_road.draw_player(x=0, y=0)
     if new_road.enemy_status_list_dic != []:
         for i in new_road.enemy_status_list_dic:
             new_road.player_status_dic["체력"] = new_road.player_status_dic["체력"] - (i["공격력"] * (1 - (new_road.player_status_dic["방어력"] + new_road.player_status_dic["방어구"][1])/100))
@@ -541,8 +556,6 @@ while True:
                                     print("최후의 일격!! (스킬시전)")
                                     new_road.skill[x]['쿨여부'] = True
                                     new_road.skill[x]['활성여부'] =True
-                        else:
-                            print("존재하지않는 스킬입니다.")
                 if local_input == "exit":
                     break
         elif game_input == "init_game":

@@ -30,9 +30,15 @@ ment_안내자
 -안내자 : item 아이템 창열기
 -안내자 : target (적이름)
 -안내자 : save 현재 위치 플레이어의 능력 등등을 저장
--안내자 : item창을 연후 명령령어
--안내자 : use (사용할 아이템)
--안내자 : exit 아이템창 나가기
+-안내지 : skill 스킬창 열기
+-안내자 : item창을 연후 명령어
+-안내자 : -use (사용할 아이템)
+-안내자 : -exit 아이템창 나가기
+-안내자 : skill창을 연후 명령어
+-안내자 : -use (사용할 스킬이름)
+-안내자 : -exit (나가기)
+-안내자 : ■ = 문 or 스킬시전된칸 , N = npc P = 플레이어, E = 적
+-안내자 : 문은 비밀번호가 있을수도 있습니다. 적이있는 곳에서 NPC와 대화하기위해서는 모든적을 죽여야 합니다.
 ment_안내자_end
 question_루카
 -루카 고마워
@@ -47,5 +53,5 @@ question_안내자
 -안내자 : 끝
 question_안내자_end
 door
-door1 5 9 huntingground
+door1 5 9 huntingground None
 door_end
